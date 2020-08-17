@@ -1,0 +1,123 @@
+<html>
+
+  <head>
+        <title>Home Page</title>
+        <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+        <meta content="utf-8" http-equiv="encoding">
+        <style>
+            *, ::after, ::before {
+                box-sizing: inherit;
+                background-color: #ED5FCA;
+                color: rgb(8, 8, 71);
+            }
+            .moby {
+                padding: 2rem 1rem;
+                margin-bottom: 2rem;
+                border-radius: .3rem;
+                border-bottom: 0;
+                text-align: center;
+                align-content: center;
+                align-items: center;
+                padding: 4rem 2rem;
+            }
+            .moby button {
+                color: #fff;
+                background-color: #C568F0;
+                border-color: #C568F0;
+                padding: 5px;
+                border-radius: 5px;
+                margin: 5px;
+            }
+            .moby .query {
+                text-align: left;
+                border: 3px dotted #e9ecef;
+                padding: 1.5rem 1.2rem;
+                max-width: 800px;
+                min-height: 200px;
+                margin-left: auto;
+                margin-right: auto;
+                border-radius: .3rem;
+            }
+            .moby .query button:hover{
+              cursor: pointer;
+              background-color: #A639D8;
+            }
+
+            .moby .query2 {
+                text-align: left;
+                border: 3px dotted #124d88;
+                padding: 1.5rem 1.2rem;
+                max-width: 800px;
+                min-height: 200px;
+                margin-left: auto;
+                margin-right: auto;
+                border-radius: .3rem;
+            }
+            .moby .query2 button:hover{
+              cursor: pointer;
+              background-color: #662186;
+            }
+        </style>
+  </head>
+  <body>
+      
+    <div class="moby"> 
+      <img src="http://www.pngall.com/wp-content/uploads/2016/05/Kitten-Free-PNG-Image.png" />
+
+      <h1>Hello there!</h1>
+
+      <p>I changed the colours and the picture!</p>
+
+      <div class="query">
+        <p>This is a test query. Click 'GET' or type 'another' and click 'GET'</p>
+        <div>
+          <button type="submit" onclick="queryServer()">GET</button>
+          <input id="path" type="text">
+        </div>
+        <h3>And the response is:</h3>
+        <div id="response">
+
+    <div class="moby"> 
+      <div class="query2">
+        <p>This is the square root calculator</p>
+        <div>
+          <button type="submit" onclick="queryServer2()">CALCULATE</button>
+          <input id="input" type="number">
+        </div>
+        <h3>And the answer is:</h3>
+        <div id="answer">
+      
+              </div>
+            </div>
+          </div>
+
+    <script type="text/javascript">
+    function queryServer() {
+        const Http = new XMLHttpRequest();
+        const path = document.getElementById('path').value;
+        const url = "/api/";
+        Http.open("GET", url + path);
+        Http.send();
+
+        Http.onreadystatechange = (e) => {
+            document.getElementById('response').innerHTML = Http.responseText;
+        }
+    }
+
+    function queryServer2() {
+        var xhr = new XMLHttpRequest();
+        const input = document.getElementById('input').value;
+        const url = "/api/square_root";
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhr.send(input);
+
+        xhr.onreadystatechange = (e) => {
+            document.getElementById('answer').innerHTML = xhr.responseText;
+        }
+    }
+    </script>
+  
+  </body>
+
+</html>

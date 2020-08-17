@@ -1,0 +1,32 @@
+
+cd "OneDrive - Nedbank"
+cd Documents\Training
+cd "2020 Knowledge Shares"
+cd "Lesson 4 - Docker-compose"
+cd My_Example_1
+
+-- 1. Python app --
+cd app
+docker image build -t app_test_image .
+docker container run --name app_test_container -p 8080:5000 app_test_image
+- test in postman
+docker container stop app_test_container
+docker container rm app_test_container
+docker image rm app_test_image
+
+-- 2. Web server --
+cd ..
+cd web
+- comment out config
+docker image build -t web_test_image .
+docker container run --name web_test_container -p 8080:80 web_test_image
+- test in postman
+docker container stop web_test_container
+docker container rm web_test_container
+docker image rm web_test_image
+
+-- Docker-compose --
+- nginx config
+cd ..
+docker-compose up
+docker-compose down
